@@ -3,17 +3,24 @@
 cat << EOF
 
 ========== [U-19] Check Finger service Enable ===========
-===============================================
 
 EOF
 
-if [ -f /etc/proftpd/proftpd.conf ]; then
-	if [ "`cat /etc/proftpd/proftpd.conf | grep anonymous_enable | awk -F= '{print $2}'`" = NO ]
-	then
-		echo "GOOD!!. Anonymous FTP logins are not allowed."
-	else
-		echo "BAD!! Anonymous FTP logins are allowed."
-	fi
-else
-	echo "There is no FTP service."
+IFS=$'\n' arr=("`cat /etc/services | grep finger | awk '{print $1}'`")
+
+if [ -f /etc/services ]; then
+  for i in ${arr[@]}; do
+    if [ $i = "finger" ]; then
+      echo "BAD!! Finger service enabled."
+      exit 0
+    else
+      if [ -f /etc/xinetd.d/finger ]; then
+	echo "BAD!! Finger service enabled."
+	exit 0
+      fi
+      echo "GOOD!! Finger service disabled."
+    fi
+  done
 fi
+
+unset arr
