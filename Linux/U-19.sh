@@ -13,14 +13,15 @@ if [ -f /etc/services ]; then
     if [ $i = "finger" ]; then
       echo "BAD!! Finger service enabled."
       exit 0
-    else
-      if [ -f /etc/xinetd.d/finger ]; then
-	echo "BAD!! Finger service enabled."
-	exit 0
-      fi
-      echo "GOOD!! Finger service disabled."
     fi
   done
+fi
+
+if [ -f /etc/xinetd.d/finger ]; then
+  echo "BAD!! Finger service enabled."
+  exit 0
+else
+  echo "GOOD!! Finger service disabled."
 fi
 
 unset arr
