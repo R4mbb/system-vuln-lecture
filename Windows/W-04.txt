@@ -1,0 +1,3 @@
+Lockout threshold:                                    10
+[점검결과]    
+취약 
