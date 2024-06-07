@@ -1,7 +1,0 @@
-[W-27] Anonymous FTP 금지  
-[점검 현황]    
-[점검 기준] 
-[양호] Anonymous FTP 금지되어 있음 
-[취약] Anonymous FTP 금지되어 있지 않음  
-[점검결과]    
-[양호] Anonymous FTP 금지설정 O 
