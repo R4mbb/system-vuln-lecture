@@ -359,7 +359,7 @@ HP=`ls -l /etc/hosts | awk '{print $1}'`
 echo"" >> ${HNAME}.${DATE}.txt
 if [ $HO = root ]
 then
-	echo "[안전] hosts 파일 소유자 : " $HO  >> ${HNAME}.${DATE}.txt
+	echo "[양호] hosts 파일 소유자 : " $HO  >> ${HNAME}.${DATE}.txt
 else
 	echo "[취약] hosts 파일 소유자 : " $HO  >> ${HNAME}.${DATE}.txt
 	echo "[강화방안] hosts 파일의 소유자를 root로 변경하세요." >> ${HNAME}.${DATE}.txt
@@ -368,7 +368,7 @@ fi
 
 if [ $HP = -rw------- ]
 then
-	echo "[안전] hosts 파일 권한   : " $HP  >> ${HNAME}.${DATE}.txt
+	echo "[양호] hosts 파일 권한   : " $HP  >> ${HNAME}.${DATE}.txt
 else
 	echo "[취약] hosts 파일 권한   : " $HP  >> ${HNAME}.${DATE}.txt
 	echo "[강화방안] hosts 파일의 권한을 600으로 변경하세요."  >> ${HNAME}.${DATE}.txt
@@ -398,14 +398,14 @@ then
 
 	if [ $IO = root ]
 	then
-		echo "[안전] inetd.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
+		echo "[양호] inetd.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] inetd.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	fi
 
 	if [ $IP = -rw------- ]
 	then
-		echo "[안전] inetd.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
+		echo "[양호] inetd.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] inetd.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	fi
@@ -422,14 +422,14 @@ then
 
 	if [ $XO = root ]
 	then
-		echo "[안전] xinetd.conf 파일 소유자 : " $XO  >> ${HNAME}.${DATE}.txt
+		echo "[양호] xinetd.conf 파일 소유자 : " $XO  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] xinetd.conf 파일 소유자 : " $XO  >> ${HNAME}.${DATE}.txt
 	fi
 
 	if [ $XP = -rw------- ]
 	then
-		echo "[안전] xinetd.conf 파일 권한   : " $XP  >> ${HNAME}.${DATE}.txt
+		echo "[양호] xinetd.conf 파일 권한   : " $XP  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] xinetd.conf 파일 권한   : " $XP  >> ${HNAME}.${DATE}.txt
 	fi
@@ -449,7 +449,7 @@ then
 		echo "[취약] 권한이 잘못 설정된 파일 있습니다. "  >> ${HNAME}.${DATE}.txt
 		echo "        > " $ FP
 	else
-		echo "[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+		echo "[양호] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
         모든 파일이 올바른 권한으로 설정되어 있습니다."  >> ${HNAME}.${DATE}.txt
 	fi
 
@@ -458,7 +458,7 @@ then
 		echo "[취약] 소유자 잘못 설정된 파일 있습니다. "  >> ${HNAME}.${DATE}.txt
 		echo "        > " $ FO
 	else
-		echo "[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+		echo "[양호] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
         모든 파일이 올바른 소유자로 설정되어 있습니다."  >> ${HNAME}.${DATE}.txt
 	fi
 
@@ -490,14 +490,14 @@ then
 
 	if [ $IO = root ]
 	then
-		echo "[안전] syslog.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
+		echo "[양호] syslog.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] syslog.conf 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	fi
 
 	if [ $IP = -rw-r----- ]
 	then
-		echo "[안전] syslog.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
+		echo "[양호] syslog.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] syslog.conf 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	fi
@@ -530,14 +530,14 @@ then
 
 	if [ $IO = root ]
 	then
-		echo "[안전] services 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
+		echo "[양호] services 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] services 파일 소유자 : " $IO  >> ${HNAME}.${DATE}.txt
 	fi
 
 	if [ $IP = -rw-r--r-- ]
 	then
-		echo "[안전] services 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
+		echo "[양호] services 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	else
 		echo "[취약] services 파일 권한   : " $IP  >> ${HNAME}.${DATE}.txt
 	fi
@@ -591,7 +591,7 @@ for i in ${FILE[@]}; do
     if [ -e ${i} ]; then
         TMP=$(ls -l ${i} | awk '{print $1}' | grep -i 's')
         if [ $? -eq 0 ]; then
-            echo "[취약] : ${i}" >> ${HNAME}.${DATE}.txt
+            echo "[취약] File was found : ${i}" >> ${HNAME}.${DATE}.txt
         else
             echo "[양호] : ${i}" >> ${HNAME}.${DATE}.txt
         fi
@@ -680,3 +680,33 @@ cat << EOF >> ${HNAME}.${DATE}.txt
 [**crontab 서비스 점검**]
 
 EOF
+if [ -f /etc/crontab ] && [ -f /usr/bin/crontab ]; then
+    if [ "`ls -ld /etc/crontab | awk '{print $1}'`" = "-rwxr-x---" ]; then
+        echo "[양호] /etc/crontab 파일 권한이 양호합니다!!" >> ${HNAME}.${DATE}.txt
+    else
+        echo "[취약] /etc/crontab 파일 권한이 취약합니다!!" >> ${HNAME}.${DATE}.txt
+    fi
+    if [ "`ls -ld /usr/bin/crontab | awk '{print $1}'`" = "-rwxr-x---" ]; then
+        echo "[양호] /usr/bin/crontab 파일 권한이 양호합니다." >> ${HNAME}.${DATE}.txt
+    else
+        echo "[취약] /usr/bin/crontab 파일 권한이 취약합니다." >> ${HNAME}.${DATE}.txt
+    fi
+fi
+
+declare -i count=0
+TMP1=$'\n' cron=("`ls -ld /etc/cron.*/* | awk '{print $1" "$3}'`")
+for i in ${cron[@]}; do
+    if [ $i[1] != "-rw-r-----" ] && [ $i[2] != "root" ]; then
+        #echo "/etc/cron.* 내 파일 중 권한이 취약한 파일이 있습니다!!"
+        count+=1
+    fi
+done
+
+echo "[****] /etc/cron.*/ 내 파일 중 권한이 취약한 파일 ${count}개 있습니다!!" >> ${HNAME}.${DATE}.txt
+
+unset cron
+echo ""  >> ${HNAME}.${DATE}.txt
+
+echo ""
+echo "Open the \"${HNAME}.${DATE}.txt\" file with NOTEPAD Application"
+echo ""
