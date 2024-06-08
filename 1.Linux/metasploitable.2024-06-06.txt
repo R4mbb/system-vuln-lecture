@@ -4,9 +4,9 @@
 
 ■ Username: msfadmin        
 ■ Computername: metasploitable       
-■ Case name: 12123123        
-■ Examiner name: 123123
-■ Stat Time : 2024-06-06.10:58        
+■ Case name: 123        
+■ Examiner name: 123
+■ Stat Time : 2024-06-06.11:32        
 ■ Log file : metasploitable.2024-06-06.txt       
 ■ OS: Linux
 ■ CPU: i686      
@@ -125,7 +125,7 @@ File group :  shadow
 
 [**/etc/hosts 파일 소유자 및 권한 설정**]
 
-[안전] hosts 파일 소유자 :  root
+[양호] hosts 파일 소유자 :  root
 [취약] hosts 파일 권한   :  -rw-r--r--
 [강화방안] hosts 파일의 권한을 600으로 변경하세요.
 
@@ -136,15 +136,15 @@ File group :  shadow
 
 [**/etc/(x)inetd.conf 파일 소유자 및 권한 설정**]
 
-[안전] inetd.conf 파일 소유자 :  root
+[양호] inetd.conf 파일 소유자 :  root
 [취약] inetd.conf 파일 권한   :  -rw-r--r--
 
-[안전] xinetd.conf 파일 소유자 :  root
+[양호] xinetd.conf 파일 소유자 :  root
 [취약] xinetd.conf 파일 권한   :  -rw-r--r--
 
-[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+[양호] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
         모든 파일이 올바른 권한으로 설정되어 있습니다.
-[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+[양호] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
         모든 파일이 올바른 소유자로 설정되어 있습니다.
 
 
@@ -154,7 +154,7 @@ File group :  shadow
 
 [**/etc/syslog.conf 파일 소유자 및 권한 설정**]
 
-[안전] syslog.conf 파일 소유자 :  root
+[양호] syslog.conf 파일 소유자 :  root
 [취약] syslog.conf 파일 권한   :  -rw-r--r--
 
 
@@ -164,8 +164,8 @@ File group :  shadow
 
 [**/etc/services 파일 소유자 및 권한 설정**]
 
-[안전] services 파일 소유자 :  root
-[안전] services 파일 권한   :  -rw-r--r--
+[양호] services 파일 소유자 :  root
+[양호] services 파일 권한   :  -rw-r--r--
 
 
 -------------------------------------------------------------------------------
@@ -179,21 +179,21 @@ File group :  shadow
 [ 취약 ] : SetUID/SetGID bits exists.
 ================================================
 
-[---] File not found : /sbin/dump
-[---] File not found : /sbin/restore
-[취약] : /usr/bin/newgrp
-[취약] : /sbin/unix_chkpwd
-[---] File not found : /usr/bin/lpq-cups
-[---] File not found : /usr/bin/lpr
-[---] File not found : /usr/bin/lpc
-[---] File not found : /usr/bin/lpr-cups
-[---] File not found : /usr/sbin/lpc-cups
-[---] File not found : /usr/bin/lpq
-[---] File not found : /usr/bin/lprm-cups
-[---] File not found : /usr/bin/lprm
-[취약] : /usr/bin/at
-[---] File not found : /usr/bin/mount
-[---] File not found : /usr/bin/traceroute
+[----] File not found : /sbin/dump
+[----] File not found : /sbin/restore
+[취약] File was found : /usr/bin/newgrp
+[취약] File was found : /sbin/unix_chkpwd
+[----] File not found : /usr/bin/lpq-cups
+[----] File not found : /usr/bin/lpr
+[----] File not found : /usr/bin/lpc
+[----] File not found : /usr/bin/lpr-cups
+[----] File not found : /usr/sbin/lpc-cups
+[----] File not found : /usr/bin/lpq
+[----] File not found : /usr/bin/lprm-cups
+[----] File not found : /usr/bin/lprm
+[취약] File was found : /usr/bin/at
+[----] File not found : /usr/bin/mount
+[----] File not found : /usr/bin/traceroute
 
 
 -------------------------------------------------------------------------------
@@ -203,3 +203,25 @@ File group :  shadow
 [**Finger 서비스 활성화 점검**]
 
 [취약] [/etc/services] Finger service enabled.
+[취약] [/etc/xinetd.d/finger] Finger service enabled.
+
+
+-------------------------------------------------------------------------------
+        U-20  Check anonymous ftp settings   
+-------------------------------------------------------------------------------
+
+[**Anonymous FTP 서비스 활성화 점검**]
+
+[취약] Anonymous FTP logins are allowed.
+
+
+-------------------------------------------------------------------------------
+        U-22  Check the crontab service   
+-------------------------------------------------------------------------------
+
+[**crontab 서비스 점검**]
+
+[취약] /etc/crontab 파일 권한이 취약합니다!!
+[취약] /usr/bin/crontab 파일 권한이 취약합니다.
+[****] /etc/cron.*/ 내 파일 중 권한이 취약한 파일 18개 있습니다!!
+
