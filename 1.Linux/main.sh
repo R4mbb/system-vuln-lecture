@@ -314,7 +314,7 @@ SP=`stat -c %a /etc/shadow`
 SO=`stat -c %U /etc/shadow`
 SG=`stat -c %G /etc/shadow`
 
-echo "Permission :" $SP >> ${HNAME}.${DATE}.txt
+echo "Permission : " $SP >> ${HNAME}.${DATE}.txt
 echo "File owner : " $SO >> ${HNAME}.${DATE}.txt
 echo "File group : " $SG >> ${HNAME}.${DATE}.txt
 
@@ -332,7 +332,7 @@ else
 fi
 
 if [ $SG = "shadow" ]; then
-	echo "[양호]File group OK!" >> ${HNAME}.${DATE}.txt
+	echo "[양호] File group OK!" >> ${HNAME}.${DATE}.txt
 else
 	echo "[취약] File group BAD" >> ${HNAME}.${DATE}.txt
 fi
