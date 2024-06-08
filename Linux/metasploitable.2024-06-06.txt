@@ -1,0 +1,205 @@
+------------------------------------------------------------------------------- 
+        Examiner Information       
+------------------------------------------------------------------------------- 
+
+■ Username: msfadmin        
+■ Computername: metasploitable       
+■ Case name: 12123123        
+■ Examiner name: 123123
+■ Stat Time : 2024-06-06.10:58        
+■ Log file : metasploitable.2024-06-06.txt       
+■ OS: Linux
+■ CPU: i686      
+
+
+------------------------------------------------------------------------------- 
+        User Information         
+------------------------------------------------------------------------------- 
+
+■ User List
+msfadmin
+user
+service
+
+
+------------------------------------------------------------------------------- 
+        Network Information        
+------------------------------------------------------------------------------- 
+
+■ IP Address:                   addr:192.168.179.133
+■ IP Address:                   addr:127.0.0.1
+
+
+-------------------------------------------------------------------------------
+        U-01 Remote Login Permission for the root User   
+-------------------------------------------------------------------------------
+
+[**root 계정 원격접속 제한 설정**]
+
+[취약] securetty unsafe
+[취약] PermitRootLogin unsafe
+
+
+-------------------------------------------------------------------------------
+        U-02 Password Expiration and Complexity check   
+-------------------------------------------------------------------------------
+
+[**패스워드 복잡성 설정**]
+Hashing           : 
+PASS_MAX_DAYS     : 99999 days
+PASS_MIN_DAYS     : 0 days
+PASS_MIN_LEN      :  chars
+PASS_WARN_AGE     : 7 days
+
+
+-------------------------------------------------------------------------------
+        U-03 Password faillock check   
+-------------------------------------------------------------------------------
+
+[**계정 잠금 임계값 설정**]
+
+[취약] 계정 잠금 정책이 설정되어 있지 않습니다.
+[방안] 로그인 5회 이상 실패시 계정 잠금을 설정해야 합니다.
+
+
+-------------------------------------------------------------------------------
+        U-04 Password File secure   
+-------------------------------------------------------------------------------
+
+[**패스워드 파일 보호 설정**]
+
+[양호] Password file check : OK
+
+
+-------------------------------------------------------------------------------
+        U-05 root Home, Path Derectory Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**root홈, 패스 디렉터리 권한 및 패스 설정**]
+[점검기준] Recommand root directory permission : drwx------
+[점검결과] Checked   root directory permission : drwxr-xr-x
+
+[취약] ROOT directory permission BAD!!
+
+
+-------------------------------------------------------------------------------
+        U-06 File and Directory Owners Check   
+-------------------------------------------------------------------------------
+
+[**파일 및 디렉터리 소유자 설정**]
+
+[양호] Owner Settings GOOD!!
+
+
+-------------------------------------------------------------------------------
+        U-07 /etc/passwd file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/passwd 파일 소유자 및 권한 설정**]
+Permission : 644
+File owner :  root
+File group :  root
+
+[양호] File permission OK!
+[양호] File owner OK!
+[양호] File group OK!
+
+
+-------------------------------------------------------------------------------
+        U-08 /etc/shadow file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/shadow 파일 소유자 및 권한 설정**]
+Permission : 640
+File owner :  root
+File group :  shadow
+
+[취약] File permission BAD
+[양호] File owner OK!
+[양호]File group OK!
+
+
+-------------------------------------------------------------------------------
+        U-09 /etc/hosts file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/hosts 파일 소유자 및 권한 설정**]
+
+[안전] hosts 파일 소유자 :  root
+[취약] hosts 파일 권한   :  -rw-r--r--
+[강화방안] hosts 파일의 권한을 600으로 변경하세요.
+
+
+-------------------------------------------------------------------------------
+        U-10 /etc/(x)inetd.conf file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/(x)inetd.conf 파일 소유자 및 권한 설정**]
+
+[안전] inetd.conf 파일 소유자 :  root
+[취약] inetd.conf 파일 권한   :  -rw-r--r--
+
+[안전] xinetd.conf 파일 소유자 :  root
+[취약] xinetd.conf 파일 권한   :  -rw-r--r--
+
+[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+        모든 파일이 올바른 권한으로 설정되어 있습니다.
+[안전] /etc/xinetd.d/ 내 서비스 파일이 존재하지 않거나,
+        모든 파일이 올바른 소유자로 설정되어 있습니다.
+
+
+-------------------------------------------------------------------------------
+        U-11 /etc/syslog.conf file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/syslog.conf 파일 소유자 및 권한 설정**]
+
+[안전] syslog.conf 파일 소유자 :  root
+[취약] syslog.conf 파일 권한   :  -rw-r--r--
+
+
+-------------------------------------------------------------------------------
+        U-12 /etc/services file Owner and Permissions Settings   
+-------------------------------------------------------------------------------
+
+[**/etc/services 파일 소유자 및 권한 설정**]
+
+[안전] services 파일 소유자 :  root
+[안전] services 파일 권한   :  -rw-r--r--
+
+
+-------------------------------------------------------------------------------
+        U-13  SUID, SGID, Setting files Check   
+-------------------------------------------------------------------------------
+
+[**SUID, SGID, 설정 파일점검**]
+
+================================================
+[ 양호 ] : There are no SetUID/SetGID bits.
+[ 취약 ] : SetUID/SetGID bits exists.
+================================================
+
+[---] File not found : /sbin/dump
+[---] File not found : /sbin/restore
+[취약] : /usr/bin/newgrp
+[취약] : /sbin/unix_chkpwd
+[---] File not found : /usr/bin/lpq-cups
+[---] File not found : /usr/bin/lpr
+[---] File not found : /usr/bin/lpc
+[---] File not found : /usr/bin/lpr-cups
+[---] File not found : /usr/sbin/lpc-cups
+[---] File not found : /usr/bin/lpq
+[---] File not found : /usr/bin/lprm-cups
+[---] File not found : /usr/bin/lprm
+[취약] : /usr/bin/at
+[---] File not found : /usr/bin/mount
+[---] File not found : /usr/bin/traceroute
+
+
+-------------------------------------------------------------------------------
+        U-19  Check Finger service Enable   
+-------------------------------------------------------------------------------
+
+[**Finger 서비스 활성화 점검**]
+
+[취약] [/etc/services] Finger service enabled.
